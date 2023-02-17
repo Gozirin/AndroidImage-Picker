@@ -1,0 +1,40 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.4.0'
+    repositories {
+        google()
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.15.0"
+    }
+}
+
+allprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
+
+    repositories {
+        google()
+        maven { url "https://jitpack.io" }
+        jcenter()
+    }
+
+    detekt {
+        config = files("${project.rootDir}/detekt.yml")
+        parallel = true
+    }
+
+    // Avoid Kotlin docs error
+    tasks.withType(Javadoc) {
+        enabled = false
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
