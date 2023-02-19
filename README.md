@@ -367,4 +367,4 @@ Almost 90% of the app that I have developed has an Image upload feature. Along w
   * Optimized Compression Logic
   * Replace white screen with transparent one.
 
-### Version: 1.0
+
